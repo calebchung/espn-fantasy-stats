@@ -1,42 +1,5 @@
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.common.by import By
-
+from libs.scrape import boil_soups
 from libs.utils import clean_player_name
-
-# teams and weeks are 1-indexed
-teams = range(1, 7)
-weeks = range(1, 2)
-
-def start_driver():
-    options = webdriver.ChromeOptions()
-    options.add_argument(argument="--headless")
-    driver = webdriver.Chrome(options=options)
-    return driver
-
-def create_url(team_id: int = 1, week: int = 1):
-    url = ("https://fantasy.espn.com/football/team?leagueId=883531153&"
-           "teamId=" + str(team_id) +
-           "&seasonId=2024&"
-           "scoringPeriodId=" + str(week) + "&statSplit=singleScoringPeriod")
-    return url
-
-# generate bs4 for each team, for each week
-# get it bc boil B)
-def boil_soups():
-    driver = start_driver()
-    team_week_soups = {}
-    for team in teams:
-        for week in weeks:
-            url = create_url(team, week)
-            driver.get(url)
-            WebDriverWait(driver, 10).until(ec.presence_of_element_located((By.CLASS_NAME, "Table__Scroller")))
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
-            team_week_soups[(team, week)] = soup
-
-    return team_week_soups
 
 def total_underperforming():
     team_week_soups = boil_soups()
