@@ -5,7 +5,8 @@ ESPN's API is basically undocumented and there aren't currently great existing s
 
 
 # Usage
-TODO
+In terminal, run:
+`python main.py`
 
 # Future stats/superlatives to collect
 Best waiver acquisition
