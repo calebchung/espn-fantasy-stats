@@ -1,5 +1,5 @@
 from libs.scrape import boil_soups, scrape
-from libs.clean import clean
+from libs.clean import clean, players_only, bench_only
 from libs.utils import clean_player_name
 
 def total_underperforming():
@@ -25,4 +25,4 @@ def total_underperforming():
 
 # total_underperforming()
 df_dict = scrape()
-print(clean(df_dict)[1][1])
+print(bench_only(clean(df_dict)[1][1]))
