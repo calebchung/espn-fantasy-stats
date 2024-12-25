@@ -1,4 +1,5 @@
 from libs.scrape import boil_soups, scrape
+from libs.clean import clean
 from libs.utils import clean_player_name
 
 def total_underperforming():
@@ -23,5 +24,5 @@ def total_underperforming():
             print("Week 1 diff vs projection: " + str(round(total_diff_for_week, 2)))
 
 # total_underperforming()
-df = scrape()
-print(df)
+df_dict = scrape()
+print(clean(df_dict)[1][1])

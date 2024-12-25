@@ -1,3 +1,5 @@
+from io import StringIO
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,7 +10,7 @@ from libs.utils import create_url
 import pandas as pd
 
 # teams and weeks are 1-indexed
-teams = range(1, 7)
+teams = range(1, 2)
 weeks = range(1, 2)
 
 def start_driver():
@@ -41,7 +43,7 @@ def scrape():
         week_dfs = {}
         for week_soup_idx in team_soups[week_idx]:
             week_table = team_soups[week_idx][week_soup_idx].find_all('table')
-            week_df = pd.read_html(str(week_table))[0]
+            week_df = pd.read_html(StringIO(str(week_table)))[0]
             week_dfs[week_soup_idx] = week_df
 
         team_dfs[week_idx] = week_dfs
