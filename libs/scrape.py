@@ -10,7 +10,7 @@ from libs.utils import create_url
 import pandas as pd
 
 # teams and weeks are 1-indexed
-teams = range(1, 2)
+teams = range(1, 7)
 weeks = range(1, 2)
 
 def start_driver():
