@@ -11,7 +11,7 @@ import pandas as pd
 
 # teams and weeks are 1-indexed
 teams = range(1, 7)
-weeks = range(1, 2)
+weeks = range(1, 5)
 
 def start_driver():
     options = webdriver.ChromeOptions()
